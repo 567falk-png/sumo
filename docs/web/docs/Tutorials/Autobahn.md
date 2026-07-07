@@ -17,16 +17,14 @@ and consider a segment without on- or off-ramps. Enter the edge creation
 mode by pressing <kbd>e</kbd> and create an edge that is a few kilometers long.
 <b>Hint</b>: you can start with a long straight edge and then change to
 the move-mode (press <kbd>m</kbd>) to add and drag around geometry points on the
-edge to alter its shape. Save your highway as `autobahn.net.xml`. Now
-add some more lanes to the edge by right clicking on it and selecting
-"Duplicate lane". Now enter the inspect mode (press <kbd>i</kbd>) and click on
+edge to alter its shape (you might have to zoom in for that). Save your highway as `autobahn.net.xml`. Now
+add some more lanes to the edge by right clicking on it and selecting "Lane operations" -> "Duplicate lane". Now enter the inspect mode (press <kbd>i</kbd>) and click on
 the edge. For the "speed" enter 36.11 (recall that SUMO always uses m/s
 as the unit for speed, 36.11m/s \~ 130km/h). Then split a short (about
-one hundred meters long) initial segment (right click on edge -\> context
-menu -\> Split edge here) of the edge and name it "entry" (press <kbd>i</kbd> and
-click on the edge, then find the right textfield in the left panel). Do
+one hundred meters long) initial segment (right click on edge -> edge operations -> Split edge here) of the edge and change its id to "entry" (press <kbd>i</kbd> and
+click on the edge, then the first textfield in the left panel). Do
 the same at the end of the long edge and call the shorter edge at the
-end "exit". Give the long edge the name "longEdge".
+end "exit". Give the long edge the id "longEdge".
 
 # Create Traffic
 
@@ -47,7 +45,7 @@ We will use this approach here, but for more sophisticated realizations
 of vehicle variability, we recommend using the script
 `createVehTypeDistribution.py` in the {{SUMO}}/tools directory.
 
-Create a routes-file `autobahn.rou.xml` with the following content:
+Create a routes-file `autobahn.rou.xml` (create an empty textfile and rename it to autobahn.rou.xml)  with the following content:
 
 ```xml
 <routes>
@@ -64,7 +62,7 @@ Create a routes-file `autobahn.rou.xml` with the following content:
 
 # Run the Simulation
 
-Create a config-file `autobahn.sumocfg`:
+Create a config-file `autobahn.sumocfg` (create an empty textfile and rename it to autobahn.sumocfg):
 
 ```xml
 <configuration>
@@ -81,7 +79,7 @@ Editing and saving of view settings
 
 Start SUMO with this config. In the
 simulation, select the visualization scheme "real world" from the
-dropdown menu in the toolbar. Then click on the View Settings button
+dropdown menu in the toolbar. Then click on the Edit coloring schemes button
 (looks like a color wheel, right beside the scheme selection) and go to
 the tab "vehicles" in the appearing View Settings dialog. In the
 Color-dropdown menu, you can choose from a lot of ways to encode
