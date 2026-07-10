@@ -7,50 +7,48 @@ title: Manhattan
 This Tutorial explains how to build a [Manhattan Mobility
 Model](https://en.wikipedia.org/wiki/Manhattan_mobility_model) in SUMO.
 In this model, a fixed number of vehicles drive randomly on a Manhattan
-grid network. All files can also be found in the
-{{SUMO}}/docs/tutorial/manhattan directory.
+grid network. Vehicles do not follow predefined routes, instead their movements at intersections are determined by turning probabilities. 
+All required files can be found in the {{SUMO}}/docs/tutorial/manhattan directory.
 
 # Creating the network
 
 Creating Manhattan grid networks is supported by the
-[netgenerate](../netgenerate.md) application. The option **--grid** creates
-grid networks. The number of grid cells can be set using the option **--grid.number**.
-There are various options to configure the size and number of the cells
-and to change the number of lanes and types of junctions. The options
-for this tutorial are written in a configuration file. The network is
-created by calling
+[netgenerate](../netgenerate.md) application. [netgenerate](../netgenerate.md) is a SUMO tool that automaticlly creates road networks. The option **--grid** creates
+grid-shaped networks. The size of the grid can be configured with options such as **--grid.number**, which defines the number of grid cells. Further settings allow changing the cell size, number of lanes, and junction types.
+For this tutorial, all network settings are stored in a configuration file (manhattan.netgcfg).
+The network is created by calling
 
 ```
 netgenerate -c manhattan/data/manhattan.netgcfg
 ```
+This command generates the file net.net.xml, which contains the complete road network used in the later simulation steps.
 
 # Generating vehicles
 
+In this section we explain the concept; the actual vehicle generation follows below.
+
 The vehicles in a Manhattan mobility model drive randomly according to
-specified turning ratios. This type of mobility is supported by the
+specified turning ratios, which define the probability of turning left, continuing straight, or turning right at intersections. This type of movement is supported by the
 [jtrrouter](../jtrrouter.md) application. This application requires
-`<flow>`-definitions as input to define the starting point and starting times of
-vehicles.
+`<flow>`-definitions as input, which specify where and when vehicles enter the network.
+The actual routes are generated later by jtrrouter based on the turning ratios.
 
 ## Generating random flows for jtrrouter
 
-The [randomTrips.py](../Tools/Trip.md#randomtripspy) tool can be
-used to generated suitable randomFlows with the following options. If the **--trip-attributes** option
-is not recognized correctly, try using double quotes around the option value and escape double quotes inside.
+In this step vehicle flows are created.
+The [randomTrips.py](../Tools/Trip.md#randomtripspy) tool generates a flows.xml file
+containing the starting points and departure times of the vehicles.
 
+Run the following command
 ```
  <SUMO_HOME>/tools/randomTrips.py -n net.net.xml -o flows.xml --begin 0 --end 1 \
        --flows 100 --jtrrouter \
        --trip-attributes 'departPos="random" departSpeed="max"'
 ```
+This creates 100 vehicles that enter the network at the beginning of the simulation.
+The option **--jtrrouter** must be set to generate flows without destination. Otherwise the generated vehicles might end their trip too early. The option **--end 1** ensures that all vehicles are generated at the start of the simulation. The arguments supplied to option **--trip-attributes** are set to ensure that multiple vehicles may enter the source edge in the first step.
 
-The option **--flows 100** defines the number of vehicles that shall drive in the
-network. Usually a `<flow>` is used to define multiple vehicles but in this
-case each flow generates just a single vehicle at the start of the
-simulation (hence the option **--end 1**). The option **--jtrrouter** must be set to generate flows
-without destination. Otherwise the generated vehicles might end their
-trip too early. The arguments supplied to option **--trip-attributes** are set to ensure that
-multiple vehicles may enter the source edge in the first step.
+After running the command, a new file called flows.xml should be created. This file is used as input for the next step.
 
 The options are also encoded in the script runner.py.
 
@@ -59,18 +57,16 @@ The options are also encoded in the script runner.py.
 
 ## Calling jtrrouter
 
-The [jtrrouter](../jtrrouter.md) application is called with the
-generated random flows. To ensure routes of sufficient length the option
-**--allow-loops** must be set. Since no sink edge are defined, the option **--accept-all-destinations** is set. The
-default turn ratios for the Manhattan Mobility Model (25% right, 50%
-straight, 25% left) are set via option **--turn-defaults 25,50,25**.
+In this step [jtrrouter](../jtrrouter.md) uses generated vehicle flows to create routes through the Manhatten network. To generate sufficiently long routes, vehicles are allowed to make loops. Since no destination edges are defined, all destinations are accepted. The default turning ratios for the Manhattan Mobility Model (25% right, 50% straight, 25% left) are also defined.
 
-All options for this tutorial are written in a configuration file. The
-vehicles are created by calling
+All required options for this tutorial are written in the configuration file manhatten.jtrrcfg. 
+
+Run [jtrrouter](../jtrrouter.md) with
 
 ```
 jtrrouter -c manhattan/data/manhattan.jtrrcfg
 ```
+This creates the vehicle routes that are used in the simulation.
 
 ## Remarks on Vehicle number
 
