@@ -3,8 +3,7 @@ title: Public Transport Tutorial
 ---
 
 # Introduction
-This tutorial is a small example of how to incorporate public transport, without
-using the [osmWebWizard.py](../Tools/Import/OSM.md#osmwebwizardpy).
+This tutorial is a small example of how to incorporate public transport.
 Main topics are:
 
 *   Public Transport
@@ -30,6 +29,8 @@ At the beginning of the simulation, buses and trams are being dispatched to cate
 Simultaneously, people are created. Each person hurries to their favorite bus stop and waits for their bus or tram.
 They then are picked up and brought to their target bus stops.
 
+The simulation can be started using the provided configuration file run.sumocfg. This file already contains references to the network, public transport routes, persons, and bus stops, so no manual configuration is required.
+
 Running the simulation:
 ```
 .docs/tutorials/public_transport/data/run.sumocfg
@@ -42,7 +43,7 @@ Running the simulation:
 First, the net has to be created and bus stops must be built. There are several ways to accomplish this - one can, for example, write them by hand into the xml file or use netedit for this.
 
 #### Using netedit
-Bus stops can be easily created with the bus stop tool at the top of the window.
+
 The following gifs will describe the basic creation of the net used in this tutorial.
 ![](../images/PublicTransport02.gif)
 *Creating an edge with reverse line and side walks.*
@@ -51,14 +52,10 @@ The following gifs will describe the basic creation of the net used in this tuto
 *Creating an edge with reverse line, which allows vehicles of your choice.*
 
 ![](../images/PublicTransport04.gif)
-*Adding bus stops to the edges.*
+*Adding bus stops to the edges with the additional mode*
 
-If you are not sure about how to create a net in netedit, take a look at this tutorial:
 
-* [Quick Start](quick_start.md)
-It explains the use of edges, connections, demands, routes etc., in depth.
-
-When saving the net you should save your additionals as well.
+After creating the bus stops in netedit, save both the network and the additional file before continuing. (File -> Additionals and Shapes -> Safe Additionals)
 Bus stops should be written in the `additional.add.xml` file to provide the stops for the people and vehicles.
 An example xml code for the bus stop may look like this:
 
@@ -74,7 +71,8 @@ If a busStop is on an edge that does not permit pedestrians (i.e. tram track) it
 
 
 ## Public Transport
-The created bus stops can be used as the stopping points within the route declaration.
+In this step, we define the public transport routes that use the previously created bus stops.
+Theses stops can be used as the stopping points within the route declaration.
 Those routes can later be assigned to vehicles, in this case, trams and buses.
 The routes are written into the `routes.rou.xml` file.
 Below you can see examples from the code for the routes of the trams and buses.
@@ -105,8 +103,8 @@ To obtain a repeating schedule multiple approaches are feasible:
 
 ### Schedules
 
-Buses and trams usually run on strict schedules in daily life. Similar alterations are possible in SUMO and are vital while using intermodal routing.
-Such schedules are defined with the attribute `until`. The until attribute is set for the stops.
+Public transport vehicles usually follow a fixed timetable.
+In SUMO, this can be defined with the `until` attribute. This attribute is set for the stops.
 A vehicle following this schedule can't leave this stop until this time ('until') has passed and the minimum stopping time ('duration') has also passed.
 
 
