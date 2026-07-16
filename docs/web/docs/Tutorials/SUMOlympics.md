@@ -53,14 +53,12 @@ inspect mode, change its width to 2.1 meters in the left panel.
 <img src="../images/sumolympics_netedit_3.png" width="1000"/>
 
 Now let us split the edge to create a starting point for the
-competitors: Right-click anywhere on the edge and select "Split edge
-here" from the context menu. Then click on the created node (in SUMO
+competitors: Right-click anywhere on the edge, select edge operations and then "Split edge here" from the context menu. Then click on the created node (in SUMO
 terminology this is already a _junction_). Set its x-coordinate to 900
 and its y-coordinate to 0 in the `pos`-field just as you did above when
 creating the edge. Effectively, we have created a 100 meter running
 track for the competitors with a 900 meter holding area for each of the
-competing modes. Now check the check box "select edges" again and rename
-the two edges to "beg" and "end" (in the inspector panel). Save your
+competing modes. In inspect mode, change the id of the two edges to "beg" and "end" (in the inspector panel). Save your
 network (<kbd>Ctrl</kbd> + <kbd>S</kbd>).
 
 # Defining the competing vehicles (types and flows)
@@ -86,10 +84,10 @@ description](../Definition_of_Vehicles,_Vehicle_Types,_and_Routes.md#vehicle_typ
 for details on these definitions, as well as [this page](../Specification/Persons.md) for persons.
 
 For each vehicle type, we schedule and position vehicle flows by adding the following `<flow .../>` elements just below the
-vType definitions (within the `<routes>` element!):
+vType definitions. Make sure those codeline are within the `<routes>` element!( </routes> is the last line in your file)
 
 ```xml
-        ...
+        
     <flow id="pkw" type="pkw" from="beg" to="end" begin="0" end="0" number="66" departPos="last"/>
     <flow id="bus" type="bus" from="beg" to="end" begin="0" end="0" number="5" departPos="last"/>
     <flow id="tram" type="tram" from="beg" to="end" begin="0" end="0" number="2" departPos="last"/>
@@ -98,7 +96,7 @@ vType definitions (within the `<routes>` element!):
 	<personFlow id="pedestrian" type="pedestrian" begin="0" end="0" number="100" departPos="-30">
        <walk from="beg" to="end" arrivalPos="-0.1"/>
     </personFlow>
-        ...
+        
 ```
 
 Notice that the pedestrian flow (represented by the `personFlow` element above) has a slightly different syntax, the reason for this is that pedestrians can walk or take a ride (use public transport for instance), and these different activities need to be communicated to [sumo](../sumo.md). For details on the meaning of the attributes of the flows, see the
