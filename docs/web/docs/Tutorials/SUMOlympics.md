@@ -29,7 +29,7 @@ Now we have a long road, which will be the stage of our competition. The
 participants in the competition will be transportation modes, i.e.,
 buses, trams, bicycles, passenger cars, and feet. They should travel on
 different lanes side-by-side. Thus, we have to add lanes for each mode.
-To do so, right-click on the edge and hover over "add restricted lane"
+To do so, right-click on the edge, select lane operations and hover over "add restricted lane"
 in the context menu. This will show you three choices for the creation
 of special purpose lanes: Sidewalk, bike lane, and Bus lane. Add one lane
 for each type.
@@ -38,9 +38,8 @@ for each type.
 
 To create a tram, we add a new lane by clicking on "Duplicate lane" in
 the same context menu. For that lane, we have to restrict the allowed
-vehicle class to trams. To do this, first uncheck the "select edges"-box
-just right of the edit mode dropdown menu in the toolbar (the mode
-should still be set to "(i)Inspect"). Then click on the newly created
+vehicle class to trams. To do this, first enable the "Clicks target lanes" checkbox on the right-hand side of the edit mode toolbar (the mode
+should still be set to "(i)Inspect"). This allows you to select individual lanes instead of whole edges. Then click on the newly created
 lane and on the button "allow" in the inspector panel. This opens a
 dialog with check boxes for all possible vehicle classes. Uncheck all
 but "rail_urban" and click on "accept". Now edit the allowances for the
