@@ -15,7 +15,7 @@ in the sumo-gui.
 # Requirements
 
 - [SUMO](../Installing/index.md) installation
-- [Python](https://www.python.org) (\>= 2.7) installation
+- [Python](https://www.python.org) 3 installation
 
 # Getting started
 
@@ -28,8 +28,7 @@ directory:
 python osmWebWizard.py
 ```
 
-Windows users may also invoke the command by clicking *All Programs -\>
-SUMO -\> OSM Web Wizard*. Once the script is running, a web browser
+Windows users may also be able to start the OSM Web Wizard from the SUMO Start Menu folder, depending on the installation method. Once the script is running, a web browser
 should open showing a map excerpt of central Berlin.
 
 ![wz01.jpg](../images/Wz01.png "wz01.png")
@@ -46,7 +45,7 @@ on the right side of the map.
 
 ![wz02.jpg](../images/Wz02.png "wz02.png")
 
-You can change the size and location of this area by click and hold with
+You can change the size and location of this area by clicking and dragging with
 the mouse pointer at the boundary between the grayed and non-grayed
 area. Once you are satisfied with the area selection, you can proceed to
 the next step.
@@ -105,13 +104,12 @@ to be downloaded and rendered.
 
 For example, one can only choose motorways, primary,
 secondary and tertiary to simulate major traffic.
-This impacts the file size of the OSM map data.
+This reduces the size and complexity of the generated SUMO network.
 
 By default, all road types are checked which implies downloading and rendering
 all roads.
-Unchecking the "Add Polygon" checkbox in the Demand Generation section disables
-downloading and rendering non-road objects like buildings, waterways, etc. resulting
-in a smaller file size.
+Unchecking the "Add Polygon" checkbox in the Network Generation section disables importing and rendering non-road objects 
+like buildings, waterways, etc. resulting in a smaller file size.
 
 
 # Generating and Running the scenario
