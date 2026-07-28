@@ -7,7 +7,7 @@ title: Hello World
 
 ## Requirements
 
-- [sumo-gui](../sumo-gui.md) and [netedit](../Netedit/index.md) version ≥ 1.4.0
+- [sumo-gui](../sumo-gui.md) and [netedit](../Netedit/index.md) version 1.4.0 or later
 
 ## Introduction
 
@@ -32,7 +32,6 @@ The SUMO Configuration file is where certain options and all files (Network, Rou
 Open [netedit](../Netedit/index.md) and create a new network by selecting *File-\>New Network* or using the shortcut <kbd>Ctrl</kbd> + <kbd>N</kbd>
 
 
-Make sure that **Network** is selected.
 ![](../images/HelloWorld_netedit_network.png)
 
 Enter **Edge Mode** by selecting *Modes-\>Edge mode*, using the shortcut <kbd>E</kbd> or by clicking on the ![](../images/icon_modecreateedge.png) button.
@@ -53,7 +52,7 @@ Now we want to rename our recently inserted Junctions and Edges (which get arbit
 To do so, enter **Inspect Mode** by selecting *Modes-\>Inspect mode*, using the shortcut <kbd>I</kbd> or by clicking on the ![](../images/icon_modeinspect.png) button.
 
 In Inspect mode you can select different type of elements, such as Nodes and Edges. If an element is selected, its properties will appear on the left side.
-Let's rename (change their **id**) the nodes to "1", "2" and "3" (from left to right) and the edges to "1to2" and "out" (also left to right).
+Let's change the nodes **ids** to "1", "2" and "3" (from left to right) and the edges to "1to2" and "out" (also left to right).
 
 Replace the position (**pos**) of the nodes with the following values:
 
@@ -113,7 +112,7 @@ Do not close netedit yet.
     This demand element file **must** have the **.rou.xml** file extension!
 
 !!! caution "Important"
-    Save all simulation related files (Network, Demand and SUMO Configuration file) in the same directory.
+    For simplicity, it is recommended to save all simulation-related files in the same directory.
 
 ## Visualizing in sumo-gui
 
@@ -127,7 +126,7 @@ Now you can close netedit if you wish.
 !!! note
     SUMO Configuration files have the following file extension -> **.sumocfg** (example: *myScenario.sumocfg*)
 
-Before starting the simulation, make sure that the Delay (![](../images/Delay.png)) is set to at least 80 ms, as otherwise the simulation would happen very quickly and we would not be able to see our only vehicle in our tiny network.
+Before starting the simulation, increase the Delay (![](../images/Delay.png)) so that the vehicle can be observed more easily (for example, to about 80 ms), as otherwise the simulation would happen very quickly and we would not be able to see our only vehicle in our tiny network.
 
 Click on Run ![](../images/icon_play.png) (<kbd>Ctrl</kbd> + <kbd>A</kbd>) to start the simulation.
 
