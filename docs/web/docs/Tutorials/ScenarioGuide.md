@@ -26,8 +26,7 @@ interface.
 Check whether a direct import is possible:
 [Networks/Import](../Networks/Import/index.md). Otherwise, you will need
 to convert the data to a simple XML-format which can be read by
-[netconvert](../netconvert.md). Read this page:
-[Networks/Import](../Networks/Import/index.md).
+[netconvert](../netconvert.md).
 
 ## If you do not yet have any network data
 
@@ -84,7 +83,7 @@ patch.nod.xml :
 ```xml
 <nodes>
     <node id="id_of_the_node_you_want_to_modify" type="right_before_left"/>
-<nodes>
+</nodes>
 ```
 
 and patch the network like this:
