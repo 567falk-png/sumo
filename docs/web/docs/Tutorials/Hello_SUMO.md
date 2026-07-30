@@ -140,7 +140,7 @@ After that create a file with the viewsettings
 
 ```xml
 <viewsettings>
-    <viewport y="0" x="250" zoom="100"/>
+    <viewport  x="250" y="0" zoom="100"/>
     <delay value="100"/>
 </viewsettings>
 ```
